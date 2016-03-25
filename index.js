@@ -1,17 +1,15 @@
 var express = require('express');
 var requestIp = require('request-ip');
-var userAgentParser = require('ua-parser-js');
+var useragent = require('useragent');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(function (req, res) {
-	var parser = new userAgentParser();
-	var ua = req.headers['user-agent'];
 	var info = {
 		ipaddress: requestIp.getClientIp(req),
-		language: req.headers["accept-language"],
-		software: JSON.stringify(parser.setUA(ua).getResult())
+		language: req.headers["accept-language"].split(",")[0],
+		software: useragent.parse(req.headers['user-agent']).os.toString()
 	};
 	res.json(info);
 });
