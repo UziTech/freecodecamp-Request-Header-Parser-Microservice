@@ -9,7 +9,7 @@ app.use(function (req, res) {
 	var info = {
 		ipaddress: requestIp.getClientIp(req),
 		language: req.headers["accept-language"].split(",")[0],
-		software: useragent.parse(req.headers['user-agent']).os.toString()
+		software: useragent.parse(req.headers['user-agent']).os
 	};
 	res.json(info);
 });
