@@ -1,6 +1,6 @@
 var express = require('express');
 var requestIp = require('request-ip');
-var userAgentParser = require('user-agent-parser');
+var userAgentParser = require('ua-parser-js');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
